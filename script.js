@@ -5,9 +5,11 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQuery is lodaed');
     $('#submit').on('click', employeeAdd);
+    $('#table').on('click', '.deleteButton', deleteItem);
 }
 
 let employeeArray = [];
+let overBudget = 20000;
 
 function EmployeeInfo( firstName, lastName, idNumber , jobTitle , annualSalary ){
     let employee = {
@@ -38,16 +40,16 @@ function employeeAdd(){
         $('#jobTitle').val('');
         $('#annualSalary').val('');
 
-        addToTable(employeeArray);
+        makeTable(employeeArray);
 }
 
-function addToTable(employeeArray){
-    $('.table').empty();
-    $('.table').append( `<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th> </tr>`);
+function makeTable(employeeArray){
+    $('#table').empty();
+    $('#table').append( `<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th> </tr>`);
 
     for (let index = 0; index < employeeArray.length; index++) {
         let empOut = employeeArray[index];
-        $('.table').append(`<tr><td>${empOut.firstName}</td><td>${empOut.lastName}</td><td>${empOut.idNumber}</td><td>${empOut.jobTitle}</td><td>${empOut.annualSalary}</td></tr>`);
+        $('#table').append(`<tr class="${index}"><td>${empOut.firstName}</td><td>${empOut.lastName}</td><td>${empOut.idNumber}</td><td>${empOut.jobTitle}</td><td>${empOut.annualSalary}</td><td><button class="deleteButton">Delete</button></td></tr>`);
         
     }
     calcTotal(employeeArray);
@@ -60,12 +62,34 @@ function calcTotal(employeeArray) {
     for (let index = 0; index < employeeArray.length; index++) {
         const add = employeeArray[index];
         let monthlyAdd = (add.annualSalary / 12);
-        console.log(monthlyAdd);
+
         totalMonthly += monthlyAdd;
-        console.log(totalMonthly);
+
     }
 
-    totalMonthly = (totalMonthly/employeeArray.length);
-    console.log(totalMonthly);
-    //displayMonthly(totalMonthly);
+    displayMonthly(totalMonthly);
+}
+
+function displayMonthly(totalMonthly){
+    $("#totalMonthly").empty();
+    $("#totalMonthly").append(`<h3>Total Monthly: ${totalMonthly}</h3>`);
+    if(totalMonthly >= overBudget){
+        $('h3').addClass('overBudget');
+    }
+    else if ($('h3').hasClass('overBudget') && totalMonthly < overBudget){
+        $('h3').addClass();
+    }  
+}
+
+function deleteItem(){
+
+    for (let index = 0; index < employeeArray.length; index++) {
+        console.log($(this).parent().parent().hasClass(`${index}`));
+        if ($(this).parent().parent().hasClass(`${index}`)){
+            employeeArray.splice(index, 1);
+        }
+    }
+    // console.log($(this).parent().parent().hasClass('0'));
+    $(this).parent().parent().remove();
+    makeTable(employeeArray);
 }
