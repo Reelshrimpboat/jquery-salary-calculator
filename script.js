@@ -5,6 +5,7 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQuery is lodaed');
     $('#submit').on('click', employeeAdd);
+    $('#table').on('click', '.resetButton', resetAll);
     $('#table').on('click', '.deleteButton', deleteItem);
 }
 
@@ -45,7 +46,14 @@ function employeeAdd(){
 
 function makeTable(employeeArray){
     $('#table').empty();
-    $('#table').append( `<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th> </tr>`);
+    //$('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton">Reset</button></th> </tr>`);
+
+    if(employeeArray.length > 0 ){
+        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton">Reset</button></th> </tr>`);
+    }
+    else if(employeeArray.length === 0){
+        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton" disabled>Reset</button></th> </tr>`);
+    }
 
     for (let index = 0; index < employeeArray.length; index++) {
         let empOut = employeeArray[index];
@@ -89,7 +97,13 @@ function deleteItem(){
             employeeArray.splice(index, 1);
         }
     }
-    // console.log($(this).parent().parent().hasClass('0'));
+
     $(this).parent().parent().remove();
+    makeTable(employeeArray);
+}
+
+function resetAll() {
+
+    employeeArray = [];
     makeTable(employeeArray);
 }

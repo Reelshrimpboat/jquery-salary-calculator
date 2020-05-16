@@ -1,3 +1,14 @@
 .overBudget{
    background-color: red; 
 }
+
+#table{
+    border: 1px solid black;
+}
+
+th{
+    width: 150px;
+}
+td{
+    width: 150px;
+}
