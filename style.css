@@ -1,14 +1,90 @@
-.overBudget{
-   background-color: red; 
+body{
+    width: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#header{
+    width: 100%;
+    background-color: grey;
+    padding: 5px 0px;
+    margin: 0px;
+}
+
+h1{
+    max-width: 1080px;
+    width: 90%;
+    margin: 0px auto;
+}
+
+#bodyStuff{
+    max-width: 1080px;
+    width: 90%;
+    margin: auto;
+}
+.inputs{
+    width: 19%;
+    min-width: 160px;
+    margin: 0px;
+}
+label{
+    display: block;
+    width: 98%;
+    margin: auto;
+}
+#inputArea{
+    width: 100%;
+    margin: 0;
+}
+
+input{
+    width: 96%;
+    margin: auto;
 }
 
 #table{
-    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 th{
-    width: 150px;
+    max-width: 20%;
+    background-color: grey;
+    text-align: left;
+    padding: 0px 5px;
 }
+
 td{
-    width: 150px;
+    max-width: 20%;
+    border-bottom: 1px solid black;
+}
+
+tr:nth-child(odd){
+    background-color: #f7f7f7;
+}
+
+tr:hover{
+    background-color: lightgray;
+}
+
+.inputs{
+    display: inline-block;
+}
+
+label{
+    text-justify: left;
+}
+
+#totalMonthly{
+    text-align: right;
+    width: 100%;
+}
+
+h3{
+    float: right;
+    padding: 0px 4px;
+}
+
+.overBudget {
+    background-color: red;
 }

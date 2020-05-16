@@ -49,15 +49,15 @@ function makeTable(employeeArray){
     //$('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton">Reset</button></th> </tr>`);
 
     if(employeeArray.length > 0 ){
-        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton">Reset</button></th> </tr>`);
+        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employee ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton">Reset</button></th> </tr>`);
     }
     else if(employeeArray.length === 0){
-        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employe ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton" disabled>Reset</button></th> </tr>`);
+        $('#table').append(`<tr class="topRow"><th>First Name</th> <th>Last Name</th> <th>Employee ID</th> <th>Job Title</th> <th>Annual Salary</th><th><button class="resetButton" disabled>Reset</button></th> </tr>`);
     }
 
     for (let index = 0; index < employeeArray.length; index++) {
         let empOut = employeeArray[index];
-        $('#table').append(`<tr class="${index}"><td>${empOut.firstName}</td><td>${empOut.lastName}</td><td>${empOut.idNumber}</td><td>${empOut.jobTitle}</td><td>${empOut.annualSalary}</td><td><button class="deleteButton">Delete</button></td></tr>`);
+        $('#table').append(`<tr class="${index}"><td>${empOut.firstName}</td><td>${empOut.lastName}</td><td>${empOut.idNumber}</td><td>${empOut.jobTitle}</td><td>$${empOut.annualSalary}</td><td><button class="deleteButton">Delete</button></td></tr>`);
         
     }
     calcTotal(employeeArray);
@@ -74,13 +74,15 @@ function calcTotal(employeeArray) {
         totalMonthly += monthlyAdd;
 
     }
-
+    totalMonthly = (totalMonthly * 100);
+    totalMonthly = Math.round(totalMonthly);
+    totalMonthly = (totalMonthly / 100);
     displayMonthly(totalMonthly);
 }
 
 function displayMonthly(totalMonthly){
     $("#totalMonthly").empty();
-    $("#totalMonthly").append(`<h3>Total Monthly: ${totalMonthly}</h3>`);
+    $("#totalMonthly").append(`<h3>Total Monthly: $${totalMonthly}</h3>`);
     if(totalMonthly >= overBudget){
         $('h3').addClass('overBudget');
     }
@@ -92,7 +94,6 @@ function displayMonthly(totalMonthly){
 function deleteItem(){
 
     for (let index = 0; index < employeeArray.length; index++) {
-        console.log($(this).parent().parent().hasClass(`${index}`));
         if ($(this).parent().parent().hasClass(`${index}`)){
             employeeArray.splice(index, 1);
         }
