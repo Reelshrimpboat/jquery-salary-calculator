@@ -8,9 +8,11 @@ function onReady() {
     $('#table').on('click', '.resetButton', resetAll);
     $('#table').on('click', '.deleteButton', deleteItem);
 }
+//gets the buttons ready to work
 
 let employeeArray = [];
 let overBudget = 20000;
+//defines array for storage and budget
 
 function EmployeeInfo( firstName, lastName, idNumber , jobTitle , annualSalary ){
     let employee = {
@@ -22,6 +24,7 @@ function EmployeeInfo( firstName, lastName, idNumber , jobTitle , annualSalary )
     }
     return employee;
 }
+//function to create employee
 
 function employeeAdd(){
         let firstName = $('#firstName').val();
@@ -43,6 +46,7 @@ function employeeAdd(){
 
         makeTable(employeeArray);
 }
+//function that adds employee to array
 
 function makeTable(employeeArray){
     $('#table').empty();
@@ -63,6 +67,7 @@ function makeTable(employeeArray){
     calcTotal(employeeArray);
 
 }
+//function that draws the table
 
 function calcTotal(employeeArray) {
     let totalMonthly = 0;
@@ -79,6 +84,7 @@ function calcTotal(employeeArray) {
     totalMonthly = (totalMonthly / 100);
     displayMonthly(totalMonthly);
 }
+//function that calculates the total monthly cost
 
 function displayMonthly(totalMonthly){
     $("#totalMonthly").empty();
@@ -90,6 +96,7 @@ function displayMonthly(totalMonthly){
         $('h3').addClass();
     }  
 }
+//function that displays the total monthly cost
 
 function deleteItem(){
 
@@ -102,9 +109,11 @@ function deleteItem(){
     $(this).parent().parent().remove();
     makeTable(employeeArray);
 }
+//function for deleting items
 
 function resetAll() {
 
     employeeArray = [];
     makeTable(employeeArray);
 }
+//function for reseting table
