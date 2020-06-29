@@ -1,9 +1,9 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+This is a JQuery based application.  Open Indx.html in a browser to use.
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This is a salary calculator made using JQuery.  It lets you input and track how much employees are making and how much an employer would be paying during a monthly period.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This project was completed as a part of the Prime Digital Academy program, a six month full stack development immersion program.  This was the weekend challenge for the 7th week of the program.
